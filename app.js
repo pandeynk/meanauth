@@ -20,6 +20,10 @@ const users = require('./routes/users');
 
 const port = 3000;
 
+app.get("/", (req, res)=>{
+	res.send("Hello World");
+});
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
@@ -28,10 +32,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./config/passport")(passport);
 app.use('/users', users);
-
-app.get("/", (req, res)=>{
-	res.send("Hello World");
-})
 
 app.listen(port, ()=>{
 	console.log("Server started at port : " + port);
